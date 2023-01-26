@@ -8,6 +8,7 @@ function ship(length) {
     return hitCount >= length;
   }
   return {
+    length,
     hit,
     isSunk,
   };
