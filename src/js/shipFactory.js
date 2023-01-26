@@ -2,10 +2,10 @@ function ship(length) {
   let _hitCount = 0;
 
   function hit() {
-    hitCount++;
+    _hitCount++;
   }
   function isSunk() {
-    return hitCount >= length;
+    return _hitCount >= length;
   }
   return {
     length,
