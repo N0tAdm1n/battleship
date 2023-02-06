@@ -7,7 +7,7 @@ const Gameboard = () => {
     .fill({})
     .map(() => Array(10).fill({}));
 
-  let missedShots = [];
+  let allShots = [];
   let allShips = [];
 
   function placeShip(ship, [x, y] = getRandomCoordiantes()) {
@@ -68,7 +68,7 @@ const Gameboard = () => {
       ship.hit();
     } else {
       board[x][y] = { hit: true };
-      missedShots.push([x, y]);
+      allShots.push([x, y]);
     }
   }
 
@@ -82,8 +82,8 @@ const Gameboard = () => {
     get board() {
       return board;
     },
-    get missedShots() {
-      return missedShots;
+    get allShots() {
+      return allShots;
     },
     placeShip,
     placeAllShip,
