@@ -7,6 +7,8 @@ const Gameboard = () => {
     .fill({})
     .map(() => Array(10).fill({}));
 
+  let missedShots = [];
+
   function placeShip(ship, [x, y] = getRandomCoordiantes()) {
     if (valid(ship, x, y)) {
       for (let i = 0; i < ship.length; i++) {
@@ -64,6 +66,7 @@ const Gameboard = () => {
       ship.hit();
     } else {
       board[x][y] = { hit: true };
+      missedShots.push([x, y]);
     }
   }
 
