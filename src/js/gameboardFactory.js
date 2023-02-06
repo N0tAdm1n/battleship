@@ -21,6 +21,7 @@ const Gameboard = () => {
     }
   }
 
+  //place all ships
   function placeAllShip() {
     for (let i = 1, id = 0; i <= 4; i++) {
       for (let j = 4; j >= i; j--) {
@@ -58,12 +59,21 @@ const Gameboard = () => {
     return true;
   }
 
+  function receiveAttack(x, y) {
+    if (board[x][y].hasOwnProperty(ship)) {
+      ship.hit();
+    } else {
+      board[x][y] = { hit: true };
+    }
+  }
+
   return {
     get board() {
       return board;
     },
     placeShip,
     placeAllShip,
+    receiveAttack,
   };
 };
 
