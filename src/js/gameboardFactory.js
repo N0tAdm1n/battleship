@@ -4,10 +4,10 @@ const { ship } = require("./shipFactory");
 
 const Gameboard = () => {
   let board = Array(10)
-    .fill(null)
-    .map(() => Array(10).fill(null));
+    .fill({})
+    .map(() => Array(10).fill({}));
 
-  function placeShip(ship, x, y) {
+  function placeShip(ship, [x, y] = getRandomCoordiantes()) {
     if (valid(ship, x, y)) {
       for (let i = 0; i < ship.length; i++) {
         if (ship.orientation == 0) {
@@ -16,6 +16,20 @@ const Gameboard = () => {
           board[x][y + i] = { ship };
         }
       }
+    } else {
+      placeShip(ship);
+    }
+  }
+
+  function placeAllShip() {
+    for (let i = 1, id = 0; i <= 4; i++) {
+      for (let j = 4; j >= i; j--) {
+        let orientation = Math.random() > 0.5 ? 0 : 1;
+        let newShip = ship(i, orientation, id++);
+
+        placeShip(newShip);
+      }
+      console.log(id);
     }
   }
 
@@ -33,11 +47,11 @@ const Gameboard = () => {
     // check if not already there is a ship
     if (ship.orientation == 0) {
       for (let i = 0; i < ship.length; i++) {
-        if (board[x + i][y].ship) return false;
+        if (board[x + i][y].hasOwnProperty(ship)) return false;
       }
     } else if (ship.orientation == 1) {
       for (let i = 0; i < ship.length; i++) {
-        if (board[x][y + i].ship) return false;
+        if (board[x][y + i].hasOwnProperty(ship)) return false;
       }
     }
 
@@ -49,6 +63,7 @@ const Gameboard = () => {
       return board;
     },
     placeShip,
+    placeAllShip,
   };
 };
 
@@ -65,7 +80,7 @@ function getRandomNumber() {
 // // Gameboard().placeShip(newShip, 6, 6);
 // Gameboard().board[6][6] = "helos";
 
-// let newBoard = Gameboard();
+let newBoard = Gameboard();
 
-// newBoard.test(2, 3);
-// console.log(newBoard.board[2][3]);
+newBoard.placeAllShip();
+console.log(newBoard.board);
