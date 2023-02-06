@@ -8,6 +8,7 @@ const Gameboard = () => {
     .map(() => Array(10).fill({}));
 
   let missedShots = [];
+  let allShips = [];
 
   function placeShip(ship, [x, y] = getRandomCoordiantes()) {
     if (valid(ship, x, y)) {
@@ -17,6 +18,8 @@ const Gameboard = () => {
         } else {
           board[x][y + i] = { ship };
         }
+
+        allShips.push(ship);
       }
     } else {
       placeShip(ship);
@@ -70,6 +73,12 @@ const Gameboard = () => {
     }
   }
 
+  // checks if a ships have sunk
+  function isAllShipsSunk() {
+    if (allShips.length <= 0) return true;
+    return allShips.every((ship) => ship.isSunk());
+  }
+
   return {
     get board() {
       return board;
@@ -77,6 +86,7 @@ const Gameboard = () => {
     placeShip,
     placeAllShip,
     receiveAttack,
+    isAllShipsSunk,
   };
 };
 
