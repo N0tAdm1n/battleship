@@ -35,7 +35,6 @@ const Gameboard = () => {
 
         placeShip(newShip);
       }
-      console.log(id);
     }
   }
 
@@ -83,6 +82,9 @@ const Gameboard = () => {
     get board() {
       return board;
     },
+    get missedShots() {
+      return missedShots;
+    },
     placeShip,
     placeAllShip,
     receiveAttack,
@@ -107,3 +109,4 @@ let newBoard = Gameboard();
 
 newBoard.placeAllShip();
 console.log(newBoard.board);
+console.log(newBoard.isAllShipsSunk());
