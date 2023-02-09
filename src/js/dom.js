@@ -13,6 +13,9 @@ function makegrid(board) {
       const block = document.createElement("div");
       block.classList.add("block");
 
+      block.dataset.i = i;
+      block.dataset.j = j;
+
       row.append(block);
     }
 
