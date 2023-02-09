@@ -1,6 +1,12 @@
 const { Gameboard } = require("./gameboardFactory");
 const { Player } = require("./player");
 
+let currentPlayer;
+let opponentPlayer;
+
+let opponentPlayerBoard;
+let currentPlayerBoard;
+
 // sets a fresh game
 function setupGame() {
   const player1 = Player("P1");
@@ -11,11 +17,11 @@ function setupGame() {
   const Gameboard2 = Gameboard();
   Gameboard2.placeAllShip();
 
-  const currentPlayer = player1;
-  const opponentPlayer = player2;
+  currentPlayer = player1;
+  opponentPlayer = player2;
 
-  const opponentPlayerBoard = Gameboard2;
-  const currentPlayerBoard = Gameboard1;
+  opponentPlayerBoard = Gameboard2;
+  currentPlayerBoard = Gameboard1;
 }
 
 setupGame();
