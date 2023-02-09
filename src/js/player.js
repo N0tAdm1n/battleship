@@ -6,3 +6,5 @@ function Player(name, bot = false) {
     name,
   };
 }
+
+module.exports = { Player };
