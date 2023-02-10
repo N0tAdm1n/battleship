@@ -22,3 +22,7 @@ body {
     height: 40px;
     width: 40px;
 }
+
+.hit {
+    background-color: red !important;
+}
