@@ -1,6 +1,7 @@
 const { Gameboard } = require("./js/gameboardFactory");
 const { Player } = require("./js/player");
 const { createGameboards } = require("./js/dom");
+import "./style.css";
 
 let currentPlayer;
 let opponentPlayer;
