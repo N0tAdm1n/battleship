@@ -30,7 +30,9 @@ function getHitCoordinates(board) {
     block.addEventListener(
       "click",
       () => {
-        board.receiveAttack(block.dataset.i, block.dataset.j);
+        if (board.receiveAttack(block.dataset.i, block.dataset.j)) {
+          block.classList.add("ship-hit");
+        }
         block.classList.add("hit");
       },
       {
