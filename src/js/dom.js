@@ -23,4 +23,21 @@ function makegrid(board) {
   }
 }
 
-module.exports = { createGameboards };
+function getHitCoordinates(board) {
+  const blocks = document.querySelectorAll(".block");
+
+  blocks.forEach((block) =>
+    block.addEventListener(
+      "click",
+      () => {
+        board.receiveAttack(block.dataset.i, block.dataset.j);
+        block.classList.add("hit");
+      },
+      {
+        once: true,
+      }
+    )
+  );
+}
+
+module.exports = { createGameboards, getHitCoordinates };
