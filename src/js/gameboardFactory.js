@@ -66,9 +66,11 @@ const Gameboard = () => {
   function receiveAttack(x, y) {
     if (board[x][y].hasOwnProperty(ship)) {
       ship.hit();
+      return true;
     } else {
       board[x][y] = { hit: true };
       allShots.push([x, y]);
+      return false;
     }
   }
 
@@ -105,8 +107,10 @@ function getRandomNumber() {
 // // Gameboard().placeShip(newShip, 6, 6);
 // Gameboard().board[6][6] = "helos";
 
-let newBoard = Gameboard();
+// let newBoard = Gameboard();
 
-newBoard.placeAllShip();
-console.log(newBoard.board);
-console.log(newBoard.isAllShipsSunk());
+// newBoard.placeAllShip();
+// console.log(newBoard.board);
+// console.log(newBoard.isAllShipsSunk());
+
+module.exports = { Gameboard };
